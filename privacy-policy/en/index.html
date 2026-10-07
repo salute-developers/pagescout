@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="dark" />
+        <meta name="description" content="Privacy Policy for the PageScout Chrome extension" />
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><text y=%2226%22 font-size=%2228%22>🔍</text></svg>"
+        />
+        <title>Privacy Policy — PageScout</title>
+        <style>
+            :root {
+                color-scheme: dark;
+                --background: #0c0d12;
+                --panel: rgb(20 21 29 / 78%);
+                --border: rgb(255 255 255 / 8%);
+                --text: #f5f6fa;
+                --text-body: #d6d8e0;
+                --text-muted: #858893;
+                --accent: #9d96ff;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html {
+                background: var(--background);
+            }
+
+            body {
+                background:
+                    radial-gradient(circle at 16% -10%, rgb(71 84 255 / 30%), transparent 34%),
+                    radial-gradient(circle at 90% 28%, rgb(75 210 166 / 12%), transparent 28%),
+                    radial-gradient(circle at 50% 125%, rgb(71 84 255 / 16%), transparent 42%),
+                    var(--background);
+                color: var(--text);
+                font-family:
+                    Inter,
+                    ui-sans-serif,
+                    system-ui,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    'Segoe UI',
+                    sans-serif;
+                font-size: 16px;
+                line-height: 1.65;
+                margin: 0;
+                min-height: 100vh;
+            }
+
+            .page {
+                margin: 0 auto;
+                max-width: 780px;
+                padding: 40px 24px 72px;
+            }
+
+            .lang-switch {
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 20px;
+            }
+
+            .lang-switch a {
+                border: 1px solid var(--border);
+                border-radius: 999px;
+                color: var(--accent);
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                padding: 6px 14px;
+                text-decoration: none;
+            }
+
+            .lang-switch a:hover,
+            .lang-switch a:focus-visible {
+                background: rgb(255 255 255 / 6%);
+            }
+
+            .policy-card {
+                background: var(--panel);
+                border: 1px solid var(--border);
+                border-radius: 22px;
+                box-shadow: 0 18px 54px rgb(0 0 0 / 20%);
+                padding: 36px 40px 32px;
+            }
+
+            h1 {
+                font-size: clamp(28px, 6vw, 42px);
+                letter-spacing: -0.03em;
+                line-height: 1.05;
+                margin: 0 0 10px;
+            }
+
+            .policy-date {
+                color: var(--text-muted);
+                font-size: 14px;
+                margin: 0 0 4px;
+            }
+
+            .lead {
+                color: var(--text-body);
+                margin-bottom: 0;
+            }
+
+            hr {
+                border: 0;
+                border-top: 1px solid var(--border);
+                margin: 26px 0;
+            }
+
+            h2 {
+                font-size: 20px;
+                letter-spacing: -0.01em;
+                line-height: 1.3;
+                margin: 28px 0 12px;
+            }
+
+            p {
+                color: var(--text-body);
+                margin: 0 0 14px;
+            }
+
+            ul {
+                color: var(--text-body);
+                margin: 0 0 14px;
+                padding-inline-start: 22px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            li:last-child {
+                margin-bottom: 0;
+            }
+
+            strong {
+                color: var(--text);
+            }
+
+            a {
+                color: var(--accent);
+                text-decoration: none;
+                word-break: break-word;
+            }
+
+            a:hover,
+            a:focus-visible {
+                text-decoration: underline;
+            }
+
+            code {
+                background: rgb(255 255 255 / 6%);
+                border-radius: 5px;
+                font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+                font-size: 0.9em;
+                padding: 1px 5px;
+            }
+
+            .policy-footer {
+                color: var(--text-muted);
+                font-size: 12px;
+                margin: 22px 0 0;
+                text-align: center;
+            }
+
+            @media (max-width: 560px) {
+                .policy-card {
+                    border-radius: 16px;
+                    padding: 24px 20px;
+                }
+
+                .page {
+                    padding-top: 24px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="page">
+            <nav class="lang-switch" aria-label="Language switch">
+                <a href="../ru/" lang="ru">Русский</a>
+            </nav>
+            <article class="policy-card">
+                <h1>PageScout Privacy Policy</h1>
+                <p class="policy-date">Effective October 7, 2026</p>
+                <p class="lead">Privacy Policy for the PageScout Chrome extension.</p>
+                <hr />
+                <h2>Who processes the data</h2>
+                <p>
+                    The operator is Paul Tagankin, an individual and the extension's developer
+                    (<a href="mailto:teamspeed339@gmail.com">teamspeed339@gmail.com</a>). This policy covers data
+                    handling by the PageScout extension itself. Data handling on the side of the LLM provider you
+                    choose is governed by that provider's policy.
+                </p>
+                <h2>What data the extension handles</h2>
+                <p>
+                    <strong>1. LLM connection settings (entered by you).</strong> API token, API base URL, and model
+                    name. Stored locally on your device in <code>chrome.storage.local</code>. These are the only data
+                    the extension ever writes to disk.
+                </p>
+                <p>
+                    <strong>2. Chat messages and tool results.</strong> Your prompts, the model's replies, and tool
+                    execution results — including current-page content obtained by tools. Processed in panel memory
+                    within a session: never written to disk, never retained after the panel closes, never sent to the
+                    developer.
+                </p>
+                <p>
+                    <strong>3. Page tool metadata.</strong> Names, descriptions, and schemas of the WebMCP tools a page
+                    publishes itself. Read to display the tool list and included in requests to your LLM endpoint (see
+                    below).
+                </p>
+                <p>
+                    <strong>4. Local activity log.</strong> Technical session events (discovery, confirmations, errors)
+                    — in panel memory only, capped at 200 entries, with no chat content, tool arguments, or keys.
+                </p>
+                <h2>What is transmitted, and to whom</h2>
+                <p>
+                    The only network destination is <strong>the LLM endpoint you configure</strong>. On each of your
+                    requests to the assistant, the extension sends to that address: the chat messages, tool metadata
+                    and results, and your API token in the <code>Authorization</code> header. The endpoint must use
+                    HTTPS (exception: <code>localhost</code>/<code>127.0.0.1</code> for local debugging). No data is
+                    transmitted to the developer. Clarification: the extension itself contacts only this address; the
+                    page's own tools and the JavaScript you approve run in the page's context and may contact that
+                    page's own services — as if you ran them on the page manually.
+                </p>
+                <h2>What the extension does not do</h2>
+                <ul>
+                    <li>No telemetry, analytics, or advertising data; no third-party trackers.</li>
+                    <li>
+                        No servers of its own for processing chats; data is never sold or shared with third parties
+                        other than the endpoint you specify.
+                    </li>
+                    <li>Does not read browsing history, passwords, or payment data.</li>
+                    <li>
+                        Does not load remote code or execute it in the extension's context. The only exception is
+                        JavaScript generated by your LLM and run on the page after your explicit one-time approval (see
+                        "Executing JavaScript on the page").
+                    </li>
+                </ul>
+                <h2>Executing JavaScript on the page (evaluate_script)</h2>
+                <p>
+                    The built-in <code>evaluate_script</code> tool runs JavaScript in the context of the current page
+                    only after your explicit one-time approval: the confirmation card shows the complete function
+                    source and its arguments. The browser debugger is attached for the duration of that single approved
+                    call and is detached immediately afterwards — regardless of outcome. Approval cannot be granted
+                    "forever": it works once and is bound to the exact page, tool set, and arguments.
+                </p>
+                <h2>Storage and deletion</h2>
+                <ul>
+                    <li>
+                        Connection settings are kept until you change them or remove the extension's data in Chrome
+                        (the panel has no separate clear button — settings can be overwritten, or deleted only together
+                        with the extension's data).
+                    </li>
+                    <li>Chat and activity log exist only in session memory and disappear when the panel closes.</li>
+                </ul>
+                <h2>User rights</h2>
+                <p>
+                    You can review and change the settings in the panel at any time, or remove the extension entirely —
+                    along with all its local data.
+                </p>
+                <h2>Changes to this policy</h2>
+                <p>
+                    The current version is published at
+                    <a href="https://salute-developers.github.io/pagescout/privacy-policy/en/"
+                        >https://salute-developers.github.io/pagescout/privacy-policy/en/</a
+                    >. Material changes are dated.
+                </p>
+                <h2>Contact</h2>
+                <p>
+                    Data protection questions:
+                    <a href="mailto:teamspeed339@gmail.com">teamspeed339@gmail.com</a>.
+                </p>
+                <hr />
+                <p class="policy-footer">PageScout · <a href="../../">WebMCP Cart Lab</a></p>
+            </article>
+        </main>
+    </body>
+</html>

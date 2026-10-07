@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="dark" />
+        <meta name="description" content="Deterministic local cart for testing WebMCP agents" />
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><text y=%2226%22 font-size=%2228%22>🛒</text></svg>"
+        />
+        <title>WebMCP Cart Lab</title>
+        <script>
+            (() => {
+                const bootstrapChannel = 'pagescout:page-relay-bootstrap';
+                const applicationChannel = 'pagescout:page-relay';
+                const attackerHandshakeId = 'page_attacker_handshake';
+                const probe = {
+                    applicationMessages: 0,
+                    attackerAcked: false,
+                    attackerResponses: [],
+                    bootstrapEvents: [],
+                    unexpectedBootstrapPorts: 0,
+                };
+
+                Object.defineProperty(window, '__webmcpRelayProbe', {
+                    configurable: false,
+                    enumerable: false,
+                    value: probe,
+                    writable: false,
+                });
+
+                window.addEventListener(
+                    'message',
+                    (event) => {
+                        const message = event.data;
+                        if (message?.channel === applicationChannel) {
+                            probe.applicationMessages += 1;
+                        }
+                        if (message?.channel !== bootstrapChannel) {
+                            return;
+                        }
+
+                        probe.bootstrapEvents.push({
+                            handshakeId: message.handshakeId ?? null,
+                            isTrusted: event.isTrusted,
+                            portCount: event.ports.length,
+                        });
+                        if (message.handshakeId !== attackerHandshakeId && event.ports.length > 0) {
+                            probe.unexpectedBootstrapPorts += event.ports.length;
+                        }
+                    },
+                    true,
+                );
+
+                window.dispatchEvent(
+                    new MessageEvent('message', {
+                        data: {
+                            v: 1,
+                            channel: bootstrapChannel,
+                            direction: 'isolated-to-main',
+                            kind: 'port-bootstrap',
+                            handshakeId: attackerHandshakeId,
+                        },
+                    }),
+                );
+
+                const attackerChannel = new MessageChannel();
+                attackerChannel.port1.addEventListener('message', (event) => {
+                    probe.attackerResponses.push(event.data);
+                    if (event.data?.kind !== 'port-ack') {
+                        return;
+                    }
+                    probe.attackerAcked = true;
+                    attackerChannel.port1.postMessage({
+                        v: 1,
+                        channel: applicationChannel,
+                        direction: 'isolated-to-main',
+                        kind: 'request',
+                        id: 'page_forged_discovery',
+                        method: 'discover',
+                        params: {},
+                    });
+                });
+                attackerChannel.port1.start();
+                window.postMessage(
+                    {
+                        v: 1,
+                        channel: bootstrapChannel,
+                        direction: 'isolated-to-main',
+                        kind: 'port-bootstrap',
+                        handshakeId: attackerHandshakeId,
+                    },
+                    location.origin,
+                    [attackerChannel.port2],
+                );
+            })();
+        </script>
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+    <body>
+        <main class="page-shell">
+            <header class="hero">
+                <div>
+                    <p class="eyebrow">Deterministic local test page</p>
+                    <h1>WebMCP Cart Lab</h1>
+                    <p class="hero__copy">
+                        A visible cart with read-only and mutating tools for validating discovery, approval, execution,
+                        and dynamic <code>toolchange</code> handling.
+                    </p>
+                </div>
+                <div class="api-card">
+                    <span class="api-card__indicator" aria-hidden="true"></span>
+                    <div>
+                        <strong id="api-mode">Detecting WebMCP…</strong>
+                        <p id="api-help">The page is checking the browser API.</p>
+                    </div>
+                </div>
+            </header>
+
+            <div class="unsupported" id="unsupported" role="alert" hidden>
+                <strong>WebMCP is unavailable.</strong>
+                Enable <code>chrome://flags/#enable-webmcp-testing</code>, relaunch Chrome, and reload this page. The
+                manual cart still works, but an agent cannot discover its tools.
+            </div>
+
+            <section aria-labelledby="catalog-title" class="catalog-panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Manual controls remain visible</p>
+                        <h2 id="catalog-title">Catalog</h2>
+                    </div>
+                    <button class="secondary-button" id="discount-tool-toggle" type="button" disabled>
+                        Expose discount tool
+                    </button>
+                </div>
+                <div class="product-grid" id="product-grid"></div>
+            </section>
+
+            <section aria-labelledby="cart-title" class="cart-panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Visible tool result</p>
+                        <h2 id="cart-title">Cart</h2>
+                    </div>
+                    <button class="danger-button" id="clear-cart" type="button">Clear cart</button>
+                </div>
+
+                <div aria-live="polite" class="cart-list" id="cart-list"></div>
+                <div class="cart-summary">
+                    <span>Items <strong id="item-count">0</strong></span>
+                    <span id="discount-row" hidden>Discount <strong>10%</strong></span>
+                    <span>Total <strong id="cart-total">$0.00</strong></span>
+                </div>
+            </section>
+
+            <section aria-labelledby="tools-title" class="tools-panel">
+                <p class="eyebrow">Expected discovery</p>
+                <h2 id="tools-title">Registered tools</h2>
+                <ul id="registered-tools">
+                    <li><code>get_cart</code> <span>read-only</span></li>
+                    <li><code>add_item</code> <span>requires approval</span></li>
+                    <li><code>clear_cart</code> <span>requires approval</span></li>
+                </ul>
+                <p class="toolchange-note" id="toolchange-note">
+                    Use “Expose discount tool” to register <code>apply_discount</code> dynamically.
+                </p>
+            </section>
+        </main>
+
+        <footer class="page-footer">
+            <a href="privacy-policy/ru/">Политика конфиденциальности</a>
+            <span aria-hidden="true">·</span>
+            <a href="privacy-policy/en/">Privacy policy</a>
+        </footer>
+
+        <script type="module" src="./main.js"></script>
+    </body>
+</html>

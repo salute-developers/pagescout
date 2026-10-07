@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="dark" />
+        <meta name="description" content="Политика конфиденциальности расширения PageScout для Chrome" />
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><text y=%2226%22 font-size=%2228%22>🔍</text></svg>"
+        />
+        <title>Политика конфиденциальности — PageScout</title>
+        <style>
+            :root {
+                color-scheme: dark;
+                --background: #0c0d12;
+                --panel: rgb(20 21 29 / 78%);
+                --border: rgb(255 255 255 / 8%);
+                --text: #f5f6fa;
+                --text-body: #d6d8e0;
+                --text-muted: #858893;
+                --accent: #9d96ff;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html {
+                background: var(--background);
+            }
+
+            body {
+                background:
+                    radial-gradient(circle at 16% -10%, rgb(71 84 255 / 30%), transparent 34%),
+                    radial-gradient(circle at 90% 28%, rgb(75 210 166 / 12%), transparent 28%),
+                    radial-gradient(circle at 50% 125%, rgb(71 84 255 / 16%), transparent 42%),
+                    var(--background);
+                color: var(--text);
+                font-family:
+                    Inter,
+                    ui-sans-serif,
+                    system-ui,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    'Segoe UI',
+                    sans-serif;
+                font-size: 16px;
+                line-height: 1.65;
+                margin: 0;
+                min-height: 100vh;
+            }
+
+            .page {
+                margin: 0 auto;
+                max-width: 780px;
+                padding: 40px 24px 72px;
+            }
+
+            .lang-switch {
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 20px;
+            }
+
+            .lang-switch a {
+                border: 1px solid var(--border);
+                border-radius: 999px;
+                color: var(--accent);
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                padding: 6px 14px;
+                text-decoration: none;
+            }
+
+            .lang-switch a:hover,
+            .lang-switch a:focus-visible {
+                background: rgb(255 255 255 / 6%);
+            }
+
+            .policy-card {
+                background: var(--panel);
+                border: 1px solid var(--border);
+                border-radius: 22px;
+                box-shadow: 0 18px 54px rgb(0 0 0 / 20%);
+                padding: 36px 40px 32px;
+            }
+
+            h1 {
+                font-size: clamp(28px, 6vw, 42px);
+                letter-spacing: -0.03em;
+                line-height: 1.05;
+                margin: 0 0 10px;
+            }
+
+            .policy-date {
+                color: var(--text-muted);
+                font-size: 14px;
+                margin: 0 0 4px;
+            }
+
+            .lead {
+                color: var(--text-body);
+                margin-bottom: 0;
+            }
+
+            hr {
+                border: 0;
+                border-top: 1px solid var(--border);
+                margin: 26px 0;
+            }
+
+            h2 {
+                font-size: 20px;
+                letter-spacing: -0.01em;
+                line-height: 1.3;
+                margin: 28px 0 12px;
+            }
+
+            p {
+                color: var(--text-body);
+                margin: 0 0 14px;
+            }
+
+            ul {
+                color: var(--text-body);
+                margin: 0 0 14px;
+                padding-inline-start: 22px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            li:last-child {
+                margin-bottom: 0;
+            }
+
+            strong {
+                color: var(--text);
+            }
+
+            a {
+                color: var(--accent);
+                text-decoration: none;
+                word-break: break-word;
+            }
+
+            a:hover,
+            a:focus-visible {
+                text-decoration: underline;
+            }
+
+            code {
+                background: rgb(255 255 255 / 6%);
+                border-radius: 5px;
+                font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+                font-size: 0.9em;
+                padding: 1px 5px;
+            }
+
+            .policy-footer {
+                color: var(--text-muted);
+                font-size: 12px;
+                margin: 22px 0 0;
+                text-align: center;
+            }
+
+            @media (max-width: 560px) {
+                .policy-card {
+                    border-radius: 16px;
+                    padding: 24px 20px;
+                }
+
+                .page {
+                    padding-top: 24px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="page">
+            <nav class="lang-switch" aria-label="Выбор языка">
+                <a href="../en/" lang="en">English</a>
+            </nav>
+            <article class="policy-card">
+                <h1>Политика конфиденциальности PageScout</h1>
+                <p class="policy-date">Действует с 7 октября 2026 г.</p>
+                <p class="lead">Политика конфиденциальности расширения PageScout для Chrome.</p>
+                <hr />
+                <h2>Кто обрабатывает данные</h2>
+                <p>
+                    Оператор — Таганкин Павел Игоревич, физическое лицо, разработчик расширения. Контакт:
+                    <a href="mailto:teamspeed339@gmail.com">teamspeed339@gmail.com</a>. Политика описывает обработку
+                    данных самим расширением PageScout; обработка данных на стороне выбранного вами LLM-провайдера
+                    регулируется политикой этого провайдера.
+                </p>
+                <h2>Какие данные обрабатывает расширение</h2>
+                <p>
+                    <strong>1. Настройки подключения к LLM (вводятся вами).</strong> API-токен, адрес API и имя модели.
+                    Хранятся локально на устройстве в <code>chrome.storage.local</code>. Это единственные данные,
+                    которые расширение сохраняет на диск.
+                </p>
+                <p>
+                    <strong>2. Сообщения чата и результаты инструментов.</strong> Ваши запросы, ответы модели и
+                    результаты выполнения инструментов — включая контент текущей страницы, полученный инструментами.
+                    Обрабатываются в памяти панели в рамках сессии: не записываются на диск, не сохраняются после
+                    закрытия панели и не передаются разработчику.
+                </p>
+                <p>
+                    <strong>3. Метаданные инструментов страницы.</strong> Имена, описания и схемы инструментов WebMCP,
+                    которые страница публикует сама. Читаются для отображения списка инструментов и передаются в
+                    составе запросов к вашему LLM-эндпоинту (см. ниже).
+                </p>
+                <p>
+                    <strong>4. Локальный журнал событий.</strong> Технические события сессии (обнаружение,
+                    подтверждения, ошибки) — только в памяти панели, не более 200 записей, без содержимого чата,
+                    аргументов инструментов и ключей.
+                </p>
+                <h2>Кому и что передаётся</h2>
+                <p>
+                    Единственный сетевой получатель — <strong>настроенный вами LLM-эндпоинт</strong>. При каждом вашем
+                    обращении к ассистенту расширение отправляет на этот адрес: сообщения чата, метаданные и результаты
+                    инструментов, а также ваш API-токен в заголовке <code>Authorization</code>. Адрес должен
+                    использовать HTTPS (исключение — <code>localhost</code>/<code>127.0.0.1</code> для локальной
+                    отладки). Разработчику данные не передаются. Уточнение: само расширение обращается только к этому
+                    адресу; инструменты самой страницы и подтверждённый вами JavaScript выполняются в контексте
+                    страницы и могут обращаться к её собственным сервисам — как если бы вы выполнили их на странице
+                    вручную.
+                </p>
+                <h2>Чего расширение не делает</h2>
+                <ul>
+                    <li>Не собирает телеметрию, аналитику и рекламные данные; не подключает сторонние трекеры.</li>
+                    <li>
+                        Не имеет собственных серверов для обработки чатов; не продаёт и не передаёт данные третьим
+                        лицам, кроме указанного вами эндпоинта.
+                    </li>
+                    <li>Не читает историю браузинга, пароли, платёжные данные.</li>
+                    <li>
+                        Не загружает удалённый код и не исполняет его в контексте расширения. Единственное исключение —
+                        JavaScript, сгенерированный вашим LLM и выполняемый на странице после вашего явного разового
+                        подтверждения (см. раздел «Выполнение JavaScript на странице»).
+                    </li>
+                </ul>
+                <h2>Выполнение JavaScript на странице (evaluate_script)</h2>
+                <p>
+                    Встроенный инструмент <code>evaluate_script</code> выполняет JavaScript в контексте текущей
+                    страницы только после вашего явного разового подтверждения: на карточке подтверждения показываются
+                    полный текст функции и аргументы. Отладчик браузера подключается на время одного подтверждённого
+                    вызова и отключается сразу после него — независимо от исхода. Подтверждение нельзя выдать
+                    «навсегда»: оно действует один раз и привязано к конкретной странице, набору инструментов и
+                    аргументам.
+                </p>
+                <h2>Хранение и удаление</h2>
+                <ul>
+                    <li>
+                        Настройки подключения хранятся до их изменения вами или удаления данных расширения в Chrome
+                        (отдельной кнопки очистки в панели нет — настройки можно перезаписать или удалить только вместе
+                        с данными расширения).
+                    </li>
+                    <li>Чат и журнал событий существуют только в памяти сессии и исчезают при закрытии панели.</li>
+                </ul>
+                <h2>Права пользователя</h2>
+                <p>
+                    Вы можете в любой момент просмотреть и изменить настройки в панели или удалить расширение целиком —
+                    вместе со всеми локальными данными.
+                </p>
+                <h2>Изменения политики</h2>
+                <p>
+                    Актуальная версия публикуется по адресу
+                    <a href="https://salute-developers.github.io/pagescout/privacy-policy/ru/"
+                        >https://salute-developers.github.io/pagescout/privacy-policy/ru/</a
+                    >. Существенные изменения — с указанием даты.
+                </p>
+                <h2>Контакт</h2>
+                <p>
+                    Вопросы по обработке данных:
+                    <a href="mailto:teamspeed339@gmail.com">teamspeed339@gmail.com</a>.
+                </p>
+                <hr />
+                <p class="policy-footer">PageScout · <a href="../../">WebMCP Cart Lab</a></p>
+            </article>
+        </main>
+    </body>
+</html>
