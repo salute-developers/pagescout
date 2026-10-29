@@ -140,7 +140,7 @@
             </nav>
             <article>
                 <h1>Privacy Policy &amp; Terms of Use for PageScout</h1>
-                <p>Last updated: October 7, 2026</p>
+                <p>Last updated: October 29, 2026</p>
                 <p>
                     This Privacy Policy &amp; Terms of Use (“Agreement”) governs the use of the Chrome extension
                     “PageScout” (“Extension”) provided by the Developer.
@@ -165,35 +165,52 @@
                 </p>
                 <hr />
                 <h2>2. Information Processing</h2>
-                <p>In the course of its operation, the Extension processes the following data:</p>
+                <p>Depending on the features you use, PageScout processes:</p>
                 <ul>
-                    <li>LLM connection settings entered by you: API token, endpoint URL, and model name;</li>
-                    <li>chat messages and tool execution results, including current-page content obtained by tools;</li>
-                    <li>names, descriptions, and schemas of the WebMCP tools published by the page;</li>
+                    <li>your LLM connection settings: endpoint URL, model name, and API token;</li>
+                    <li>conversation messages, model responses, tool calls, and tool results, which may include current-page information;</li>
+                    <li>the current page URL and title, sent as context with assistant requests;</li>
+                    <li>names, descriptions, and schemas of tools published by the current page;</li>
                     <li>
-                        technical session events (tool discovery, confirmations, errors) kept in a local activity log of
-                        no more than 200 entries, with no chat content, tool arguments, or keys.
+                        when you request a network-resource summary, limited recent resource timing entries, including
+                        sanitized URLs and timing, status, size, and protocol fields. Query strings, fragments, and
+                        credentials are removed from URLs. The summary excludes request and response headers or bodies,
+                        cookies, and authentication values;
+                    </li>
+                    <li>
+                        local activity information, including tool names, timing or step counts, page document and
+                        snapshot identifiers, and error codes or messages. Error messages may contain details supplied
+                        by a page or service.
                     </li>
                 </ul>
                 <p>
-                    This information is transmitted only to the LLM endpoint you configure. On each request to the
-                    assistant, the Extension sends to that address the chat messages, tool metadata and results, and your
-                    API token in the <code>Authorization</code> header. The endpoint must use HTTPS (the only exception
-                    is <code>localhost</code>/<code>127.0.0.1</code> for local debugging). No data is transmitted to the
-                    Developer.
+                    PageScout does not continuously record browser traffic. Network-resource information is returned
+                    only when requested through the relevant tool. Page-provided tools may return other information
+                    available to those tools.
+                </p>
+                <p>
+                    Assistant requests are sent to the LLM endpoint you configure and may include conversation
+                    messages, the current page URL and title, tool descriptions and schemas, tool calls, and tool
+                    results, including page content or other information returned by tools. Your API token is sent in
+                    the <code>Authorization</code> header. The endpoint must use HTTPS, except for
+                    <code>localhost</code>/<code>127.0.0.1</code> during local development.
                 </p>
                 <hr />
                 <h2>3. Data Storage</h2>
-                <p>The Developer does not store user data: the Extension has no servers or databases of its own.</p>
                 <p>
-                    LLM connection settings are stored locally on your device in <code>chrome.storage.local</code> and
-                    are kept until you change them or remove the Extension's data in Chrome. These are the only data the
-                    Extension ever writes to disk.
+                    The endpoint URL, model name, and API token are stored locally in
+                    <code>chrome.storage.local</code> until you change or remove them. The API token is stored as an
+                    extension setting and is not encrypted by PageScout.
                 </p>
-                <p>Chat messages and the activity log exist only in the panel's session memory and disappear when the panel closes.</p>
                 <p>
-                    You can review and change the settings at any time, or remove the Extension entirely — along with all
-                    its local data.
+                    Conversation state, session tool permissions, and the activity log are held in side-panel session
+                    memory and are not retained by PageScout after that session ends. Closing the side panel ends the
+                    session and clears its session permissions.
+                </p>
+                <p>
+                    You can review or change connection settings in the extension, remove the Extension's stored data
+                    through Chrome, or uninstall the Extension. Your LLM provider may retain information you send to it
+                    under its own policy; PageScout cannot delete it from the provider's systems for you.
                 </p>
                 <hr />
                 <h2>4. Third-Party Services and AI Providers</h2>
@@ -212,30 +229,41 @@
                     may contact that page's own services — the same as if you performed those actions on the page
                     manually.
                 </p>
-                <p>Avoid submitting confidential, sensitive, or legally protected information unless you fully understand the associated risks.</p>
-                <hr />
-                <h2>5. Executing Code on the Page</h2>
                 <p>
-                    The built-in <code>evaluate_script</code> tool runs JavaScript in the context of the current page
-                    only after your explicit one-time approval: the confirmation card shows the complete function source
-                    and its arguments.
-                </p>
-                <p>
-                    The browser debugger is attached for the duration of that single approved call and is detached
-                    immediately afterwards, regardless of outcome.
-                </p>
-                <p>
-                    Approval cannot be granted “forever”: it works once and is bound to the exact page, tool set, and
-                    arguments.
+                    Page content, tool results, conversation messages, and errors may contain personal, confidential, or
+                    authentication information. PageScout does not filter all such information before sending it to
+                    your configured endpoint. Do not submit information you are not authorized to disclose to that
+                    provider.
                 </p>
                 <hr />
-                <h2>6. No Sale of Personal Data and No Tracking</h2>
-                <p>The Developer does not sell or share personal data or browsing information with third parties.</p>
-                <p>The Extension:</p>
+                <h2>5. Executing Code and Using Tools on the Page</h2>
+                <p>
+                    Tool calls normally require your approval or are handled under their read-only designation. If you
+                    choose to remember a tool permission, PageScout remembers that choice only for the current side-panel
+                    session. It applies to the same tool name across pages and tool sources, with no individual revoke
+                    control. A same-named tool may therefore be approved automatically on another page during that
+                    session, including a tool that otherwise requires confirmation. Review tools and arguments before
+                    remembering permission; close the side panel to clear session permissions.
+                </p>
+                <p>
+                    The built-in <code>evaluate_script</code> tool runs JavaScript in the current page's context. The
+                    code may read or change page-visible content or state and may make requests using the page's own
+                    context. Review the displayed code and arguments. A remembered permission for a tool with the same
+                    name may apply to <code>evaluate_script</code> without a new confirmation during the session.
+                </p>
+                <hr />
+                <h2>6. Limited Use and No Sale</h2>
+                <p>
+                    PageScout handles information to provide the page-assistant and page-tool features you request,
+                    including sending relevant conversation messages, page context, and tool results to your configured
+                    LLM endpoint. PageScout does not sell this information or use it for advertising or to determine
+                    creditworthiness.
+                </p>
+                <p>The Extension does not:</p>
                 <ul>
-                    <li>does not collect telemetry, analytics, or advertising data;</li>
-                    <li>does not include third-party trackers;</li>
-                    <li>does not read browsing history, passwords, or payment data.</li>
+                    <li>collect telemetry or analytics;</li>
+                    <li>include third-party trackers;</li>
+                    <li>query the browser's saved browsing-history database, read passwords, or read payment data.</li>
                 </ul>
                 <hr />
                 <h2>7. User Responsibility</h2>
